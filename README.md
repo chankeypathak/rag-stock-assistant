@@ -1,4 +1,4 @@
-# 📈 RAG-Based Stock Assistant (Docker + KDB.AI Cloud)
+# 📈 RAG-Based Stock Assistant
 
 This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, built using:
 - **Python CLI** interface (Dockerized)
@@ -8,7 +8,7 @@ This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, buil
 
 ---
 
-## ⚙️ How It Works
+## Process
 
 1. Ingest stock prices, news, and SEC filings.
 2. Embed documents using a SentenceTransformer model.
@@ -19,34 +19,22 @@ This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, buil
 
 ---
 
-## 🧭 Architecture (Simple)
+## Architecture (Simple)
+
 ```mermaid
 flowchart TD
-  U[User] --> CLI[Python CLI App]
+  U[User]
+  CLI[Python CLI App]
+  YF[yFinance]
+  RSS[RSS News Feed]
+  SEC[SEC Filings]
+  INGEST[Ingest and Preprocess]
+  HF[HF SentenceTransformer]
+  KDB[KDB.AI Cloud]
+  RETRIEVE[Top-k Retriever]
+  LLM[LLM Response Generator]
 
-  subgraph DataSources
-    YF[yFinance]
-    RSS[RSS News Feed]
-    SEC[SEC Filings]
-  end
-
-  subgraph Ingestion
-    INGEST[Ingest & Preprocess]
-  end
-
-  subgraph Embeddings
-    HF[HF SentenceTransformer]
-  end
-
-  subgraph VectorStore
-    KDB[KDB.AI Cloud]
-  end
-
-  subgraph RAG
-    RETRIEVE[Top-k Retriever]
-    LLM[LLM Response Generator]
-  end
-
+  U --> CLI
   YF --> INGEST
   RSS --> INGEST
   SEC --> INGEST
@@ -58,8 +46,7 @@ flowchart TD
   RETRIEVE --> CLI
   CLI --> LLM
 ```
-
-## 🧱 Extended Architecture (Docker + APIs + CLI)
+## Extended Architecture (Docker + APIs + CLI)
 ```mermaid
 flowchart TD
   U[User]
@@ -83,5 +70,19 @@ flowchart TD
   KDB --> CLI
   CLI --> RETRIEVE
   RETRIEVE --> LLM
-
 ```
+
+## Components Overview
+| Component            | Description                                               |
+| -------------------- | --------------------------------------------------------- |
+| `ingest.py`          | Fetch & preprocess news, stock data, filings              |
+| `embed.py`           | Generate embeddings using HuggingFace                     |
+| `query.py`           | Query KDB.AI and trigger LLM-based response               |
+| `docker-compose.yml` | Run CLI + processing modules in containers                |
+| `KDB.AI`             | Vector DB (SaaS) used for storing and querying embeddings |
+| `CLI Interface`      | User interacts with RAG system via terminal               |
+
+## TODO
+- Add Streamlit UI
+- Add alerts for stock anomalies
+- Key management in Docker
