@@ -19,7 +19,7 @@ This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, buil
 
 ---
 
-## Architecture (Simple)
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -46,7 +46,7 @@ flowchart TD
   RETRIEVE --> CLI
   CLI --> LLM
 ```
-## Extended Architecture (Docker + APIs + CLI)
+## Extended Architecture
 ```mermaid
 flowchart TD
   U[User]
