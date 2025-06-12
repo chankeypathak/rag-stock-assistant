@@ -63,15 +63,15 @@ flowchart TD
 ```mermaid
 flowchart TD
   U[User]
-  CLI[CLI App (Docker)]
+  CLI[CLI App Docker]
   YF[yFinance API]
   RSS[RSS Feed]
   SEC[EDGAR API]
   INGEST[ingest.py]
-  HF[embed.py (HF Model)]
+  HF[embed.py HF Model]
   KDB[KDB.AI Cloud]
   RETRIEVE[query.py]
-  LLM[Local/Open-source LLM]
+  LLM[Local or Open-source LLM]
 
   U --> CLI
   YF --> INGEST
@@ -83,4 +83,5 @@ flowchart TD
   KDB --> CLI
   CLI --> RETRIEVE
   RETRIEVE --> LLM
+
 ```
