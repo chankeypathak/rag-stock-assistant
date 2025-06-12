@@ -5,3 +5,4 @@ feedparser
 pandas
 yfinance
 python-dotenv
+kdbai-client

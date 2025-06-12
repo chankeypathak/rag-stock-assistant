@@ -9,7 +9,7 @@ def embed_and_store(docs, namespace="default"):
     model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode([doc["content"] for doc in docs])
 
-    kdb = KDBClient(api_key=os.getenv("KDB_API_KEY"), host=os.getenv("KDB_HOST"))
+    kdb = KDBClient()
     for doc, emb in zip(docs, embeddings):
         kdb.insert(doc["id"], doc["content"], emb.tolist(), namespace=namespace)
 
