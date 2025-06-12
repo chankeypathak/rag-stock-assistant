@@ -1,4 +1,4 @@
-# 📈 RAG-Based Stock Assistant
+# RAG-Based Stock Assistant
 
 This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, built using:
 - **Python CLI** interface
