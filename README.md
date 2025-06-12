@@ -15,6 +15,17 @@ Designed for easy replication with Docker, this assistant can support decision-m
 
 ---
 
+## Use case
+| Category                            | Example Queries                                                                                   |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **Market Summaries**             | *"Summarize today’s financial news."*<br>*"What happened in the stock market today?"*             |
+| **Stock-specific News**          | *"Any news about Reliance today?"*<br>*"What's new with TCS stock?"*                              |
+| **Sentiment or Trend Inference** | *"Is the market sentiment bullish today?"*<br>*"What's the tone of today's financial headlines?"* |
+| **Keyword Searches**             | *"Find documents mentioning interest rates."*<br>*"Which news mentions inflation?"*               |
+| **Sector-based Questions**       | *"What's going on in the IT sector?"*<br>*"Any updates in the banking industry?"*                 |
+
+---
+
 ## Process
 
 1. Ingest stock prices, news, and SEC filings.
