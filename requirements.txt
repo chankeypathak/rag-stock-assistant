@@ -1,0 +1,7 @@
+openai
+sentence-transformers
+requests
+feedparser
+pandas
+yfinance
+python-dotenv

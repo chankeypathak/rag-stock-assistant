@@ -1,1 +1,12 @@
-# docker-compose.yml placeholder
+version: '3.8'
+
+services:
+  rag-cli:
+    build: .
+    container_name: rag_stock_assistant
+    volumes:
+      - .:/app
+    working_dir: /app
+    env_file:
+      - .env
+    command: ["python", "cli/main.py"]
