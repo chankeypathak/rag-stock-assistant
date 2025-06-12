@@ -26,59 +26,6 @@ Designed for easy replication with Docker, this assistant can support decision-m
 
 ---
 
-## Architecture
-
-```mermaid
-flowchart TD
-  U[User]
-  CLI[Python CLI App]
-  YF[yFinance]
-  RSS[RSS News Feed]
-  SEC[SEC Filings]
-  INGEST[Ingest and Preprocess]
-  HF[HF SentenceTransformer]
-  KDB[KDB.AI Cloud]
-  RETRIEVE[Top-k Retriever]
-  LLM[LLM Response Generator]
-
-  U --> CLI
-  YF --> INGEST
-  RSS --> INGEST
-  SEC --> INGEST
-  INGEST --> HF
-  HF --> KDB
-  CLI --> HF
-  HF --> KDB
-  KDB --> RETRIEVE
-  RETRIEVE --> CLI
-  CLI --> LLM
-```
-## Extended Architecture
-```mermaid
-flowchart TD
-  U[User]
-  CLI[CLI App Docker]
-  YF[yFinance API]
-  RSS[RSS Feed]
-  SEC[EDGAR API]
-  INGEST[ingest.py]
-  HF[embed.py HF Model]
-  KDB[KDB.AI Cloud]
-  RETRIEVE[query.py]
-  LLM[Local or Open-source LLM]
-
-  U --> CLI
-  YF --> INGEST
-  RSS --> INGEST
-  SEC --> INGEST
-  INGEST --> HF
-  CLI --> HF
-  HF --> KDB
-  KDB --> CLI
-  CLI --> RETRIEVE
-  RETRIEVE --> LLM
-```
-
 ## Components Overview
 | Component            | Description                                               |
 | -------------------- | --------------------------------------------------------- |
