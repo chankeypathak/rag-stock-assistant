@@ -61,7 +61,7 @@ flowchart TD
 
 ## 🧱 Extended Architecture (Docker + APIs + CLI)
 ```mermaid
-fflowchart TD
+flowchart TD
   U[User]
   CLI[CLI App (Docker)]
   YF[yFinance API]
