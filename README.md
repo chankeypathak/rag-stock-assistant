@@ -20,15 +20,14 @@ This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, buil
 ---
 
 ## 🧭 Architecture (Simple)
-
 ```mermaid
 flowchart TD
   U[User] --> CLI[Python CLI App]
 
-  subgraph Data Sources
-    YF[yFinance (Stock Prices)]
-    RSS[RSS Feed (News)]
-    SEC[SEC Filings (EDGAR 10-K/8-K)]
+  subgraph DataSources
+    YF[yFinance]
+    RSS[RSS News Feed]
+    SEC[SEC Filings]
   end
 
   subgraph Ingestion
@@ -36,16 +35,16 @@ flowchart TD
   end
 
   subgraph Embeddings
-    HF[HuggingFace SentenceTransformer]
+    HF[HF SentenceTransformer]
   end
 
   subgraph VectorStore
-    KDB[KDB.AI Cloud<br/>Vector DB (HFT-friendly)]
+    KDB[KDB.AI Cloud]
   end
 
   subgraph RAG
-    RETRIEVE[Top-k Document Retrieval]
-    LLM[Open-source LLM]
+    RETRIEVE[Top-k Retriever]
+    LLM[LLM Response Generator]
   end
 
   YF --> INGEST
@@ -58,48 +57,46 @@ flowchart TD
   KDB --> RETRIEVE
   RETRIEVE --> CLI
   CLI --> LLM
+```
 
 ## 🧱 Extended Architecture (Docker + APIs + CLI)
+```mermaid
 flowchart TD
-  subgraph User Side
+  subgraph User
     U[User]
-    CLI[Python CLI App<br/>(Docker Container)]
+    CLI[CLI App (Docker)]
     U --> CLI
   end
 
-  subgraph External APIs
+  subgraph APIs
     YF[yFinance API]
-    RSS[RSS Feeds]
-    SEC[EDGAR Filings API]
+    RSS[RSS Feed]
+    SEC[EDGAR API]
   end
 
-  subgraph Ingestion Layer
-    INGEST[Ingest & Preprocess<br/>(Docker: ingest.py)]
+  subgraph Ingestion
+    INGEST[ingest.py]
     YF --> INGEST
     RSS --> INGEST
     SEC --> INGEST
   end
 
-  subgraph Embedding Layer
-    HF[HuggingFace Embeddings<br/>SentenceTransformer<br/>(Docker: embed.py)]
+  subgraph Embeddings
+    HF[embed.py (HF Model)]
     INGEST --> HF
     CLI --> HF
   end
 
-  subgraph Vector Store
-    KDB[KDB.AI Cloud<br/>(SaaS Vector DB)<br/>HFT-friendly]
+  subgraph VectorStore
+    KDB[KDB.AI Cloud]
     HF --> KDB
     KDB --> CLI
   end
 
-  subgraph RAG & LLM
-    RETRIEVE[Retrieve Top-k Docs<br/>(Docker: query.py)]
-    LLM[Open-source LLM<br/>e.g. Llama.cpp / Ollama<br/>(Optional Docker)]
+  subgraph RAG
+    RETRIEVE[query.py]
+    LLM[Local/Open-source LLM]
     CLI --> RETRIEVE
     RETRIEVE --> LLM
   end
-
-  style CLI fill:#fff2db,stroke:#333,stroke-width:1px
-  style HF fill:#d8eafd,stroke:#333,stroke-width:1px
-  style KDB fill:#d1ffd6,stroke:#333,stroke-width:1px
-  style LLM fill:#e0d3ff,stroke:#333,stroke-width:1px
+```
