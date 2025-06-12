@@ -33,7 +33,7 @@ Designed for easy replication with Docker, this assistant can support decision-m
 3. Store embeddings in **KDB.AI Cloud**.
 4. Accept a user query via CLI.
 5. Embed the query and retrieve top-k similar documents.
-6. Generate a natural-language answer using an LLM (local or API).
+6. Generate a natural-language answer using an LLM.
 
 ---
 
