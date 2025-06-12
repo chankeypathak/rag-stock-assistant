@@ -5,16 +5,16 @@ import requests
 
 load_dotenv()
 
-KDB_API_KEY = os.getenv("KDB_API_KEY")
+KDB_API_KEY = os.getenv("KDBAI_API_KEY")
 KDB_COLLECTION = os.getenv("KDB_COLLECTION")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 def query_kdb(question):
-    url = f"https://api.kdb.ai/v1/query"
+    url = f"{os.getenv('KDBAI_ENDPOINT')}/api/v2/databases/default/tables/documents/query"
     headers = {
-        "Authorization": f"Bearer {KDB_API_KEY}",
+        "X-Api-Key": KDB_API_KEY,
         "Content-Type": "application/json"
     }
     payload = {
@@ -27,6 +27,7 @@ def query_kdb(question):
     results = response.json()
     contexts = [doc["document"]["text"] for doc in results.get("matches", [])]
     return "\n".join(contexts)
+
 
 def generate_answer(question, context):
     prompt = f"""You are a stock assistant. Based on the context below, answer the question:

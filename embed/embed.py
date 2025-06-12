@@ -11,7 +11,7 @@ def embed_and_store(docs, namespace="default"):
 
     kdb = KDBClient()
     for doc, emb in zip(docs, embeddings):
-        kdb.insert(doc["id"], doc["content"], emb.tolist(), namespace=namespace)
+        kdb.insert(doc["id"], doc["content"], emb.tolist())
 
     print(f"[INFO] {len(docs)} documents embedded and stored in KDB.AI")
 

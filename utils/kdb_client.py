@@ -13,17 +13,17 @@ class KDBClient:
 
         self.table_name = os.getenv("KDBAI_TABLE", "documents")
 
-        if self.table_name not in self.db.tables:
-            schema = [
-                {"name": "id", "type": "str"},
-                {"name": "document", "type": "str"},
-                {"name": "embeddings", "type": "float32s"}
-            ]
-            index = [
-                {"name": "vectorIndex", "type": "flat", "column": "embeddings",
-                 "params": {"dims": 384, "metric": "L2"}}
-            ]
-            self.db.create_table(self.table_name, schema=schema, indexes=index)
+        # if self.table_name not in self.db.tables:
+        #     schema = [
+        #         {"name": "id", "type": "str"},
+        #         {"name": "document", "type": "str"},
+        #         {"name": "embeddings", "type": "float32s"}
+        #     ]
+        #     index = [
+        #         {"name": "vectorIndex", "type": "flat", "column": "embeddings",
+        #          "params": {"dims": 384, "metric": "L2"}}
+        #     ]
+        #     self.db.create_table(self.table_name, schema=schema, indexes=index)
 
         self.table = self.db.table(self.table_name)
 
