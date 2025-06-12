@@ -6,6 +6,13 @@ This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, buil
 - **HuggingFace embeddings**
 - **Real-time stock data sources**: yFinance, RSS, and SEC EDGAR filings
 
+
+This project implements a Retrieval-Augmented Generation (RAG) pipeline tailored for financial use cases. It ingests real-time stock prices (via yFinance), market-moving news (via RSS), and company disclosures (via SEC EDGAR).
+
+The documents are embedded using a HuggingFace transformer and stored in KDB.AI Cloud, a high-performance vector database. Queries from users are embedded, top-k relevant documents are retrieved, and responses are generated via an LLM.
+
+Designed for easy replication with Docker, this assistant can support decision-making for investors, researchers, or algorithmic trading environments.
+
 ---
 
 ## Process
