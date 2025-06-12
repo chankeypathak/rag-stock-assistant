@@ -1,8 +1,8 @@
 # 📈 RAG-Based Stock Assistant
 
 This project is a **Retrieval-Augmented Generation (RAG) stock assistant**, built using:
-- **Python CLI** interface (Dockerized)
-- **KDB.AI Cloud** as the vector store (free SaaS tier)
+- **Python CLI** interface
+- **KDB.AI Cloud** as the vector store
 - **HuggingFace embeddings**
 - **Real-time stock data sources**: yFinance, RSS, and SEC EDGAR filings
 
