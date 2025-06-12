@@ -61,42 +61,26 @@ flowchart TD
 
 ## 🧱 Extended Architecture (Docker + APIs + CLI)
 ```mermaid
-flowchart TD
-  subgraph User
-    U[User]
-    CLI[CLI App (Docker)]
-    U --> CLI
-  end
+fflowchart TD
+  U[User]
+  CLI[CLI App (Docker)]
+  YF[yFinance API]
+  RSS[RSS Feed]
+  SEC[EDGAR API]
+  INGEST[ingest.py]
+  HF[embed.py (HF Model)]
+  KDB[KDB.AI Cloud]
+  RETRIEVE[query.py]
+  LLM[Local/Open-source LLM]
 
-  subgraph APIs
-    YF[yFinance API]
-    RSS[RSS Feed]
-    SEC[EDGAR API]
-  end
-
-  subgraph Ingestion
-    INGEST[ingest.py]
-    YF --> INGEST
-    RSS --> INGEST
-    SEC --> INGEST
-  end
-
-  subgraph Embeddings
-    HF[embed.py (HF Model)]
-    INGEST --> HF
-    CLI --> HF
-  end
-
-  subgraph VectorStore
-    KDB[KDB.AI Cloud]
-    HF --> KDB
-    KDB --> CLI
-  end
-
-  subgraph RAG
-    RETRIEVE[query.py]
-    LLM[Local/Open-source LLM]
-    CLI --> RETRIEVE
-    RETRIEVE --> LLM
-  end
+  U --> CLI
+  YF --> INGEST
+  RSS --> INGEST
+  SEC --> INGEST
+  INGEST --> HF
+  CLI --> HF
+  HF --> KDB
+  KDB --> CLI
+  CLI --> RETRIEVE
+  RETRIEVE --> LLM
 ```
